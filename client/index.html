@@ -14,6 +14,7 @@
 
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery_dnd.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
     
     <!--------TEMPLATES----->
@@ -62,34 +63,7 @@
             <button type="button" class="add-btn-youtube btn btn-default">Video</button>
         </div>
     </div>
-    <script type="text/javascript">
-      /*drag-n-drop events*/
-      $.fn.extend({
-          dragdrop: function(){
-              this.on('mousedown', function(e){
-                  this._dragX = e.pageX;
-                  this._dragY= e.pageY;
-                  this._dragTarget = $(e.target);
-              });
-
-              this.on('mousemove', function(e){
-                  if (this._dragTarget){
-                      this._dragTarget.trigger('dragmove',{
-                          dx: e.pageX - this._dragX,
-                          dy: e.pageY - this._dragY
-                      });
-
-                      this._dragX = e.pageX;
-                      this._dragY = e.pageY;
-                  }
-              });
-
-              this.on('mouseup', function(){
-                  this._dragTarget = null;
-              });
-          }
-      });
-    </script>
+    
     <script type="text/javascript">        
         $(document).ready(function(){
             new window.ST.view.App({
