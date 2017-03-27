@@ -8,15 +8,14 @@
             collection: {}
         };
     </script>
-
+    
+    <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
 
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/jquery.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
-
-
-
+    
     <!--------TEMPLATES----->
     <script type="text/template" id="youtube-dialog">
         <div class="modal" role="dialog" style="display: block">
@@ -54,104 +53,8 @@
 
     <!--------COLLECTION------>
     <script type="text/javascript" src="collection/Image.js"></script>
-
-    <style>
-        html, body, #app{
-            height: 100%;
-            margin:0;
-            padding: 0;
-        }
-        #app{
-            display: flex;
-            flex-direction: row;
-        }
-
-        .workspace{
-            flex: 1 0 0;
-            position: relative;
-        }
-
-        .palette{
-            position: fixed;
-            right: 0;
-
-        }
-
-        .image-element{
-            position:absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-            border: 1px solid #dddddd;
-            border-radius: 3px;
-            background-color: #eeeeee;
-            cursor: pointer;
-        }
-
-        .image-element.video{
-            background-size: 100% 100%;
-        }
-
-        .grab-dot{
-            width: 11px;
-            height: 11px;
-            background: #2aabd2;
-            border:1px solid #1b6d85;
-            border-radius: 5px;
-            position: absolute;
-        }
-
-        .grab-dot.l{
-            left:-5px
-        }
-
-        .grab-dot.r{
-            right:-5px
-        }
-
-        .grab-dot.b{
-            bottom:-5px
-        }
-
-        .grab-dot.t{
-            top: -5px;
-        }
-
-        .grab-dot.l.t,.grab-dot.b.r{
-            cursor:nwse-resize;
-        }
-
-        .grab-dot.l.b,.grab-dot.r.t{
-            cursor:nesw-resize;
-        }
-
-        .dialog-container{
-            position: fixed;
-            top:0;
-            left:0;
-            right:0;
-            bottom: 0;
-
-        }
-        .overlay{
-            position: absolute;
-            top:0;
-            left:0;
-            right:0;
-            bottom: 0;
-            background: #3c3c3c;
-            opacity: 0.3;
-        }
-        .dialog{
-            background: #fff;
-            position:absolute;
-            padding:10px;
-
-        }
-    </style>
 </head>
 <body id="body">
-
     <div id="app">
         <div class="workspace"></div>
         <div class="palette">
@@ -159,46 +62,40 @@
             <button type="button" class="add-btn-youtube btn btn-default">Video</button>
         </div>
     </div>
-
-
-
     <script type="text/javascript">
-            $.fn.extend({
-                dragdrop: function(){
-                    this.on('mousedown', function(e){
-                        this._dragX = e.pageX;
-                        this._dragY= e.pageY;
-                        this._dragTarget = $(e.target);
-                    });
+      /*drag-n-drop events*/
+      $.fn.extend({
+          dragdrop: function(){
+              this.on('mousedown', function(e){
+                  this._dragX = e.pageX;
+                  this._dragY= e.pageY;
+                  this._dragTarget = $(e.target);
+              });
 
-                    this.on('mousemove', function(e){
-                        if (this._dragTarget){
-                            this._dragTarget.trigger('dragmove',{
-                                dx: e.pageX - this._dragX,
-                                dy: e.pageY - this._dragY
-                            });
+              this.on('mousemove', function(e){
+                  if (this._dragTarget){
+                      this._dragTarget.trigger('dragmove',{
+                          dx: e.pageX - this._dragX,
+                          dy: e.pageY - this._dragY
+                      });
 
-                            this._dragX = e.pageX;
-                            this._dragY = e.pageY;
-                        }
-                    });
+                      this._dragX = e.pageX;
+                      this._dragY = e.pageY;
+                  }
+              });
 
-                    this.on('mouseup', function(){
-                        this._dragTarget = null;
-                    });
-                }
-            });
-
+              this.on('mouseup', function(){
+                  this._dragTarget = null;
+              });
+          }
+      });
     </script>
-
-    <script type="text/javascript">
+    <script type="text/javascript">        
         $(document).ready(function(){
             new window.ST.view.App({
                 el: $(app)
             });
         });
     </script>
-
-
 </body>
 </html>

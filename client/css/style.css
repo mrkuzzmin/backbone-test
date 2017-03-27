@@ -1,0 +1,92 @@
+html, body, #app{
+   height: 100%;
+   margin:0;
+   padding: 0;
+}
+#app{
+   display: flex;
+   flex-direction: row;
+}
+
+.workspace{
+   flex: 1 0 0;
+   position: relative;
+}
+
+.palette{
+   position: fixed;
+   right: 0;
+
+}
+
+.image-element{
+   position:absolute;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+   border: 1px solid #dddddd;
+   border-radius: 3px;
+   background-color: #eeeeee;
+   cursor: pointer;
+}
+
+.image-element.video{
+   background-size: 100% 100%;
+}
+
+.grab-dot{
+   width: 11px;
+   height: 11px;
+   background: #2aabd2;
+   border:1px solid #1b6d85;
+   border-radius: 5px;
+   position: absolute;
+}
+
+.grab-dot.l{
+   left:-5px
+}
+
+.grab-dot.r{
+   right:-5px
+}
+
+.grab-dot.b{
+   bottom:-5px
+}
+
+.grab-dot.t{
+   top: -5px;
+}
+
+.grab-dot.l.t,.grab-dot.b.r{
+   cursor:nwse-resize;
+}
+
+.grab-dot.l.b,.grab-dot.r.t{
+   cursor:nesw-resize;
+}
+
+.dialog-container{
+   position: fixed;
+   top:0;
+   left:0;
+   right:0;
+   bottom: 0;
+
+}
+.overlay{
+   position: absolute;
+   top:0;
+   left:0;
+   right:0;
+   bottom: 0;
+   background: #3c3c3c;
+   opacity: 0.3;
+}
+.dialog{
+   background: #fff;
+   position:absolute;
+   padding:10px;
+
+}
